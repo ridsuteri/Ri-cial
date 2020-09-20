@@ -3,6 +3,9 @@ const app=express();
 
 const port=8000;
 
+// use  express routes
+app.use('/',require('./routes/index'));
+
 app.listen(port,function(err){
     if(err){
         // interpolation used..
