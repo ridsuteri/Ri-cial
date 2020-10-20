@@ -1,0 +1,20 @@
+:root {
+  --footer-color-grey: #686d76;
+}
+
+#layout-footer {
+  color: white;
+  background: var(--footer-color-grey);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#layout-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+#layout-footer .footer-nav ul {
+  list-style: none;
+}

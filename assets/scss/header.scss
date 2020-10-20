@@ -1,0 +1,45 @@
+:root{
+    --header-color-green: #01c5c4;
+    --header-color-blue: #2196f3;
+    --header-color-green2: #5cdb95;
+    
+}
+#layout-header{
+    nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 15px;
+        background: var(--header-color-blue);
+        color: white;
+        box-shadow: 1px 1px 1px 1px lightgrey;
+
+        .mini-logo{
+            p{
+                margin: 5px;
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+        }
+
+        .auth-links{
+            ul{
+                margin: 5% 15px;
+                display: flex;
+                justify-content: space-between;
+
+                li{
+                    
+                    // justify-content: space-around;
+                    margin: 0 15px;
+                    // margin-right: 15px;
+                }
+            }
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+
+    }
+}
