@@ -1,2 +1,25 @@
+<h1><i>Ri-cial/<%= title%></i></h1>
 
-    <h1><i>Ri-cial/<%= title%></i></h1>
+<section id="feed-posts">
+    <h4>Posts</h4>
+    <form action="posts/create" method="post" id="new-form-post">
+        <textarea name="content" cols="30" rows="3" placeholder="Write a Post..."></textarea>
+        <input type="submit" value="Post">
+    </form>
+
+    <div id="posts-list-container">
+        <ul>
+            <% for(var i of post) {%>
+                <p>
+                    <li> <%=i.content %> </li> 
+                    <br>
+                    <small>
+                         <%=i.user.name %>
+                    </small>
+                </p>
+
+            <% }%>
+        </ul>
+    </div>
+
+</section>
