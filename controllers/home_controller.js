@@ -23,7 +23,7 @@ module.exports.home = function (req, res) {
     .exec(function (err, post) {
         res.render('home', {
             title: 'Ri-cial | Home',
-            post:post
+            posts:post
         });
     });
 

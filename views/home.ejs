@@ -11,57 +11,12 @@
 
     <div id="posts-list-container">
         <ul>
-            <% for(var i of post) {%>
-            <li>
-                <p>
-                    <% if(locals.user && locals.user.id ==  i.user.id) { %>
-                    <small>
-                        <a href="/posts/destroy/<%= i.id %>">X</a>
-                        <% } %>
-                    </small>
-                    <%=i.content %><br>
-                    <small>
-                        <%=i.user.name %>
-                    </small>
-                </p>
+            <% for(post of posts){ %>
 
-                <div class="post-comments">
-                    <% if (locals.user){ %>
+            <%- include('_post') -%>
 
-                    <form action="/comments/create" method="POST">
-                        <input type="text" name="content" placeholder="Add Comment..." required>
-                        <input type="hidden" name="post" value="<%= i.id %>">
-                        <input type="submit" value="Post Comment">
-                    </form>
-
-                    <% } %>
-                    <div class="post-comment-list">
-                        <ul id="post-comments-<%= i._id %>">
-                            <% for( comment of i.comments) {%>
-                            <p>
-                                <% if(locals.user && locals.user.id ==  comment.user.id) { %>
-                                <small>
-                                    <a href="/posts/destroy/<%= comment.id %>">X</a>
-                                </small>
-                                <% } %>
-
-                                <%= comment.content %>
-                                <br>
-                                <small>
-                                    <%= comment.user.name %>
-                                </small>
-                            </p>
-                            <%}%>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </li>
-
-            <% }%>
-                        </ul>
-                    </div>
+            <%} %>
+        </ul>
+    </div>
 
 </section>
