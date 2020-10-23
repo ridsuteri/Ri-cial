@@ -7,6 +7,7 @@ const postsController = require('../controllers/posts_controller');
 // console.log('hiting likes router');
 
 router.get('/likes', likesController.like);
-router.post('/create',passport.checkAuthentication, postsController.create);
+router.post('/create', passport.checkAuthentication, postsController.create);
+router.get('/destroy/:id', passport.checkAuthentication, postsController.destroy)
 
 module.exports = router;
