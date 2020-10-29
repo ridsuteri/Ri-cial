@@ -9,9 +9,8 @@
 
 #home-container #user-friends {
   width: 30%;
-  padding: 10px;
-  border-left: 1px solid lightgray;
-  text-align: center;
   padding: 5%;
-  height: auto;
+  border-left: 1px solid lightgray;
+  height: 100%;
+  text-align: center;
 }
