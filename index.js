@@ -13,6 +13,8 @@ const passportLocal = require('./config/passport-local-strategy');
 const { initialize } = require('passport');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 // extract styles and scripts from sub pages to layouts
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
@@ -57,6 +59,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customMware.setFlash);
 // routes
 app.use('/', require('./routes/index'));
 
