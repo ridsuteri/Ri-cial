@@ -20,8 +20,5 @@ const postSchema = new mongoose.Schema({
         timestamps: true
     }
 );
-//fine
-// yes thanks a lot :)...plz resolve
-// ok
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;
