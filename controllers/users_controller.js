@@ -1,3 +1,4 @@
+const { urlencoded } = require('express');
 const User = require('../models/user');
 
 module.exports.profile = function (req, res) {
@@ -9,13 +10,36 @@ module.exports.profile = function (req, res) {
     });
 };
 
-module.exports.update = function(req, res){
-    if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-            req.flash('success', 'Updated!');
+module.exports.update = async function (req, res) {
+    if (req.user.id == req.params.id) {
+        //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+        //         req.flash('success', 'Updated!');
+        //         return res.redirect('back');
+        //     });
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function (err) {
+                if (err) { console.log('MULTER ERROR', err) }
+
+                console.log(req.file);
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if (req.file) {
+                    // this is saving the path of the uploaded file into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        } catch (err) {
+            req.flash('error', err);
+            console.log(`Err ${err}`);
             return res.redirect('back');
-        });
-    }else{
+        }
+
+    } else {
         req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
@@ -53,11 +77,11 @@ module.exports.create = function (req, res) {
     }
 
     User.findOne({ email: req.body.email }, function (err, user) {
-        if(err){req.flash('error', err); return}
+        if (err) { req.flash('error', err); return }
 
         if (!user) {
             User.create(req.body, function (err, user) {
-                if(err){req.flash('error', err); return}
+                if (err) { req.flash('error', err); return }
 
                 return res.redirect('/users/sign-in');
             })
