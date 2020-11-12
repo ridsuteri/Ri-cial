@@ -32,9 +32,9 @@ module.exports.create = async function (req, res) {
 }
 
 module.exports.destroy = async function (req, res) {
-    let post = await Post.findById(req.params.id);
 
     try {
+        let post = await Post.findById(req.params.id);
         // .id means converting the object id into string
         if (post.user == req.user.id) {
             post.remove();
@@ -56,7 +56,7 @@ module.exports.destroy = async function (req, res) {
             return res.redirect('back');
         }
     } catch (err) {
-        req.flash('error', err);
+        // req.flash('error', err);
         console.log(`Err ${err}`);
         return res.redirect('back');
     }
