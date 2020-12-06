@@ -16,7 +16,7 @@
                     deletePost($(' .delete-post-button', newPost));
 
                     // call the create comment class
-                    new PostComments(data.data.post._id);
+                    // new PostComments(data.data.post._id);
 
                     // CHANGE :: enable the functionality of the toggle like button on the new post
                     new ToggleLike($(' .toggle-like-button', newPost));
@@ -122,7 +122,7 @@
 
             // get the post's id by splitting the id attribute
             let postId = self.prop('id').split("-")[1]
-            new PostComments(postId);
+            // new PostComments(postId);
         });
     }
 
